@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:report_ui/model/sub_menu_items.dart';
 
 class DropMenuExpanding extends StatefulWidget {
   const DropMenuExpanding({
@@ -8,13 +9,14 @@ class DropMenuExpanding extends StatefulWidget {
     required this.onIndexChange,
     required this.parentIcon,
     required this.parentName,
-    required this.submenu, required this.index,
+    required this.submenu,
+    required this.index,
   });
   final bool isMenuIndex;
   final void Function(int index) onIndexChange;
-  final IconData parentIcon;
+  final String parentIcon;
   final String parentName;
-  final List<Map<String, dynamic>> submenu;
+  final List<SubMenuItems> submenu;
   final int index;
 
   @override
@@ -29,6 +31,7 @@ class _DropMenuExpandingState extends State<DropMenuExpanding> {
     return Column(
       children: [
         InkWell(
+          borderRadius: BorderRadius.circular(15),
           onTap: () {
             widget.onIndexChange(widget.index);
             setState(() {
@@ -43,7 +46,11 @@ class _DropMenuExpandingState extends State<DropMenuExpanding> {
             ),
             child: ListTile(
               contentPadding: const EdgeInsets.all(0),
-              leading: Icon(widget.parentIcon),
+              leading: Image.asset(
+                widget.parentIcon,
+                width: 25,
+                height: 25,
+              ),
               title: Text(widget.parentName),
               trailing: AnimatedSwitcher(
                 duration: const Duration(milliseconds: 200),
@@ -60,7 +67,8 @@ class _DropMenuExpandingState extends State<DropMenuExpanding> {
           Column(
             children: widget.submenu
                 .map(
-                  (item) => subMenu(item['icon'], item['title']),
+                  (subMenuItems) =>
+                      subMenu(subMenuItems.icon, subMenuItems.title),
                 )
                 .toList(),
           )
@@ -69,26 +77,27 @@ class _DropMenuExpandingState extends State<DropMenuExpanding> {
   }
 }
 
-Widget subMenu(IconData icon, String name) {
+Widget subMenu(String icon, String name) {
   return IntrinsicHeight(
     child: Row(
       children: [
         const Gap(10),
         const VerticalDivider(),
         Expanded(
-          child: Column(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                children: [
-                  const Text("--"),
-                  Expanded(
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.all(0),
-                      leading: Icon(icon),
-                      title: Text(name),
-                    ),
+              const Text("--"),
+              Expanded(
+                child: ListTile(
+                  contentPadding: const EdgeInsets.all(0),
+                  leading: Image.asset(
+                    icon,
+                    width: 25,
+                    height: 25,
                   ),
-                ],
+                  title: Text(name),
+                ),
               ),
             ],
           ),

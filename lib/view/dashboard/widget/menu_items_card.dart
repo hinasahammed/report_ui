@@ -8,7 +8,7 @@ class MenuItemsCard extends StatelessWidget {
     this.onTap,
     required this.isMenuIndex,
   });
-  final IconData icon;
+  final String icon;
   final String title;
   final void Function()? onTap;
   final bool isMenuIndex;
@@ -27,8 +27,10 @@ class MenuItemsCard extends StatelessWidget {
         ),
         child: ListTile(
           contentPadding: const EdgeInsets.all(0),
-          leading: Icon(
+          leading: Image.asset(
             icon,
+            width: 25,
+            height: 25,
           ),
           title: Text(title),
         ),

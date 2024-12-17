@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:gap/gap.dart';
+import 'package:report_ui/model/sub_menu_items.dart';
 import 'package:report_ui/view/dashboard/widget/drop_menu_expanding.dart';
 import 'package:report_ui/view/dashboard/widget/menu_items_card.dart';
 
@@ -55,7 +56,7 @@ class _DrawerMenuItemsState extends State<DrawerMenuItems> {
                         });
                         widget.advancedDrawerController.hideDrawer();
                       },
-                      icon: Icons.dashboard,
+                      icon: "assets/icons/dashboard.png",
                       title: "Dashboard",
                     ),
                     DropMenuExpanding(
@@ -66,17 +67,28 @@ class _DrawerMenuItemsState extends State<DrawerMenuItems> {
                       },
                       index: 1,
                       isMenuIndex: menuIndex == 1,
-                      parentIcon: Icons.bar_chart_rounded,
-                      parentName: "Reports",
-                      submenu: const [
-                        {
-                          "icon": Icons.analytics_outlined,
-                          "title": "Finance Report"
-                        },
-                        {"icon": Icons.sell, "title": "Sales Report"},
-                        {"icon": Icons.person, "title": "HR report"},
+                      parentIcon: "assets/icons/income.png",
+                      parentName: "Income",
+                      submenu: [
+                        SubMenuItems(
+                          icon: "assets/icons/earnings.png",
+                          title: "Earnings",
+                        ),
+                        SubMenuItems(
+                          icon: "assets/icons/refund.png",
+                          title: "Refunds",
+                        ),
+                        SubMenuItems(
+                          icon: "assets/icons/decline.png",
+                          title: "Declines",
+                        ),
+                        SubMenuItems(
+                          icon: "assets/icons/payouts.png",
+                          title: "Payouts",
+                        ),
                       ],
                     ),
+                    Gap(15),
                     DropMenuExpanding(
                       onIndexChange: (index) {
                         setState(() {
@@ -85,18 +97,50 @@ class _DrawerMenuItemsState extends State<DrawerMenuItems> {
                       },
                       index: 2,
                       isMenuIndex: menuIndex == 2,
-                      parentIcon: Icons.money,
-                      parentName: "Income",
-                      submenu: const [
-                        {"icon": Icons.payment, "title": "Earnings"},
-                        {
-                          "icon": Icons.receipt_long_outlined,
-                          "title": "Refunds"
-                        },
-                        {"icon": Icons.close, "title": "Declines"},
-                        {"icon": Icons.paid, "title": "Payouts"}
+                      parentIcon: "assets/icons/finance_report.png",
+                      parentName: "Finance Report",
+                      submenu: [
+                        SubMenuItems(
+                          icon: "assets/icons/income_statement.png",
+                          title: "Income Statement",
+                        ),
+                        SubMenuItems(
+                          icon: "assets/icons/balance_sheet.png",
+                          title: "Balance Sheet",
+                        ),
+                        SubMenuItems(
+                          icon: "assets/icons/expense_breakdown.png",
+                          title: "Expense Breakdown",
+                        ),
                       ],
                     ),
+                    Gap(15),
+                    DropMenuExpanding(
+                      onIndexChange: (index) {
+                        setState(() {
+                          menuIndex = index;
+                        });
+                      },
+                      index: 3,
+                      isMenuIndex: menuIndex == 3,
+                      parentIcon: "assets/icons/sales_Report.png",
+                      parentName: "Sales Reports",
+                      submenu: [
+                        SubMenuItems(
+                          icon: "assets/icons/sales_summary.png",
+                          title: "Sales Summary",
+                        ),
+                        SubMenuItems(
+                          icon: "assets/icons/sales_preformance.png",
+                          title: "Team Performance",
+                        ),
+                        SubMenuItems(
+                          icon: "assets/icons/expense_breakdown.png",
+                          title: "Expense Breakdown",
+                        ),
+                      ],
+                    ),
+                    Gap(15),
                   ],
                 ),
               ),

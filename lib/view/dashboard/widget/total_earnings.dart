@@ -13,24 +13,34 @@ class TotalEarnings extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.all(8),
         child: Flex(
-          direction: Axis.vertical,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          direction: Axis.horizontal,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              "Total Earnings",
-              style: theme.textTheme.bodyLarge!.copyWith(
-                color: theme.colorScheme.onSurface,
-                fontWeight: FontWeight.w400,
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Total Earnings",
+                  style: theme.textTheme.bodyLarge!.copyWith(
+                    color: theme.colorScheme.onSurface,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                const Gap(10),
+                Text(
+                  "₹847,392",
+                  style: theme.textTheme.titleLarge!.copyWith(
+                    color: theme.colorScheme.onSurface,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
             ),
-            const Gap(10),
-            Text(
-              "₹847,392",
-              style: theme.textTheme.titleLarge!.copyWith(
-                color: theme.colorScheme.onSurface,
-                fontWeight: FontWeight.w600,
-              ),
-            )
+            const Spacer(),
+            Image.asset(
+              "assets/images/green_line.png",
+              width: 50,
+            ),
           ],
         ),
       ),
